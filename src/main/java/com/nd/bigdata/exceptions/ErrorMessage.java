@@ -18,6 +18,8 @@ public class ErrorMessage<T> {
     private String message;
     private T data;
 
+
+
     public static Integer getOK() {
         return OK;
     }

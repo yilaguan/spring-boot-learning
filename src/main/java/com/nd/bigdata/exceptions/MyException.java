@@ -7,5 +7,8 @@ package com.nd.bigdata.exceptions;
  * Time: 下午11:17
  * AuthorEmail: zhangliangxgd@163.com
  */
-public class MyException {
+public class MyException extends Exception{
+    public MyException(String message){
+        super(message);
+    }
 }
