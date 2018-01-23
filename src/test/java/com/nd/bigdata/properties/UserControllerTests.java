@@ -3,9 +3,11 @@ package com.nd.bigdata.properties;
 
 import com.nd.bigdata.controller.HelloController;
 import com.nd.bigdata.controller.UserController;
+import com.nd.bigdata.dao.metadata.UserEntityRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockServletContext;
@@ -35,10 +37,16 @@ import static org.hamcrest.Matchers.equalTo;
 @WebAppConfiguration
 public class UserControllerTests {
     private MockMvc mvc;
+    private UserEntityRepository userEntityRepository;
+
+    @Autowired
+    public UserControllerTests(UserEntityRepository userEntityRepository){
+        this.userEntityRepository = userEntityRepository;
+    }
 
     @Before
     public void setUp() throws Exception{
-        mvc = MockMvcBuilders.standaloneSetup(new HelloController(), new UserController()).build();
+        mvc = MockMvcBuilders.standaloneSetup(new HelloController(), new UserController(userEntityRepository)).build();
     }
 
     @Test

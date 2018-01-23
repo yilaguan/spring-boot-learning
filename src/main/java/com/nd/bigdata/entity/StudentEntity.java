@@ -1,9 +1,8 @@
 package com.nd.bigdata.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 
 /**
  * Created by IntelliJ IDEA
@@ -14,17 +13,15 @@ import javax.persistence.Id;
  */
 
 @Entity
+@Table(name = "STUDENT")
 public class StudentEntity {
     /** 用户id */
     @Id
     @GeneratedValue
     private long id;
-    /** 用户编号 */
-    @Column(nullable = true)
-    private String userNo;
     /** 用户名称 */
-    @Column(nullable = true)
-    private String userName;
+    @Column(nullable = true, columnDefinition = "TEXT")
+    private String name;
     /** 用户密码 */
 //    @Column(nullable = true)
 //    private String userPwd;
@@ -43,20 +40,12 @@ public class StudentEntity {
         this.id = id;
     }
 
-    public String getUserNo() {
-        return userNo;
+    public String getName() {
+        return this.name;
     }
 
-    public void setUserNo(String userNo) {
-        this.userNo = userNo;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
 //    public String getUserPwd() {
